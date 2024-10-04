@@ -8,6 +8,8 @@ public class PrisonersDilemmaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PrisonersDilemmaApplication.class, args);
+		System.out.println("Hello world!");
+
 	}
 
 }
