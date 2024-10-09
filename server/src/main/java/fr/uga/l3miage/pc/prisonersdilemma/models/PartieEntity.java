@@ -3,7 +3,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-
+@Table
 @Entity
 @Setter
 @Getter
@@ -24,7 +24,7 @@ public class PartieEntity {
     private int id;
     private Integer nbTours;
 
-    @OneToMany
+    @OneToMany(mappedBy = "partie")
     private List<TourEntity> tours;
 
     @OneToOne
@@ -33,7 +33,5 @@ public class PartieEntity {
     private JoueurEntity joueur2;
 
 
-    public void ajouterTour(TourEntity tour) {
-        this.tours.add(tour);
-    }
+
 }

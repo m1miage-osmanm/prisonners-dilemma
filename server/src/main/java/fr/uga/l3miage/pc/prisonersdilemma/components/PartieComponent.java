@@ -1,7 +1,6 @@
 package fr.uga.l3miage.pc.prisonersdilemma.components;
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.*;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 
@@ -20,7 +19,7 @@ public class PartieComponent {
 
     private final PartieRepository partieRepository;
     private final TourRepository tourRepository;
-
+    private PartieEntity partieEntity;
     @Transactional
     public PartieEntity creerPartie(JoueurEntity joueur1, JoueurEntity joueur2, Integer nbTours) {
         PartieEntity partie = PartieEntity.builder()
@@ -32,7 +31,9 @@ public class PartieComponent {
         return partieRepository.save(partie);
 
     }
-
+    public void ajouterTour(TourEntity tour) {
+        partieEntity.getTours().add(tour);
+    }
 
 
 

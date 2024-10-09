@@ -2,7 +2,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.models;
 import lombok.*;
 import javax.persistence.*;
 
-
+@Table
 @Entity
 @Setter
 @Getter
@@ -24,6 +24,7 @@ public class JoueurEntity {
     private String username;
 
     @ManyToOne
+    @JoinColumn(name = "partie_id")
     private PartieEntity partie;
 
     private boolean quitter;

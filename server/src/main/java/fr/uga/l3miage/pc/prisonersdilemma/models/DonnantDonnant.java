@@ -12,6 +12,7 @@ public class DonnantDonnant extends StrategieEntity{
                                      JoueurEntity joueur,
                                      JoueurEntity adversaire) {
 
+
         if (tours.isEmpty()) {
             return "c";   // Premier tour : coopérer
         }
