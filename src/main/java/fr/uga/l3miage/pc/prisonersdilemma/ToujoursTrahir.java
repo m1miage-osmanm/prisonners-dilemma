@@ -2,9 +2,9 @@ package fr.uga.l3miage.pc.prisonersdilemma;
 
 import java.util.List;
 
-public class Trahison extends Strategie{
-    public Trahison() {
-        super("trahison", "-trahir l'adversaire toujours");
+public class ToujoursTrahir extends Strategie{
+    public ToujoursTrahir() {
+        super("ToujoursTrahir", "-trahir l'adversaire toujours");
     }
     @Override
     public String determinerDecision(List<Tours> tours,

@@ -12,8 +12,8 @@ public class DonnantDonnant extends Strategie{
 
         @Override
         public String determinerDecision(List<Tours> tours,
-                                         Joueur joueur1,
-                                         Joueur joueur2) {
+                                         Joueur joueur,
+                                         Joueur adversaire) {
 
 
             if (tours.isEmpty()) {
@@ -22,7 +22,7 @@ public class DonnantDonnant extends Strategie{
 
             Tours dernierTour = tours.get(tours.size() - 1);
 
-            if (joueur1.equals(dernierTour.getPartie().getJoueur1())) {
+            if (joueur.equals(dernierTour.getPartie().getJoueur1())) {
                 return dernierTour.getDecisionJoueur2(); // Adversaire est joueur2
             } else {
                 return dernierTour.getDecisionJoueur1(); // Adversaire est joueur1
