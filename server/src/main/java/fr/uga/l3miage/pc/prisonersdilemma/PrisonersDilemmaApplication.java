@@ -21,7 +21,7 @@ public class PrisonersDilemmaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		partieService.initPartie("Alice", "Bob", new DonnantDonnant(),new Trahison(), 5);
+		partieService.initPartie("Alice", "Bob", new DonnantDonnantRandom(),new Trahison(), 5);
 
 		// Jouer tous les tours
 		partieService.jouerTousLesTours();
