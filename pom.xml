@@ -22,7 +22,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.host.url>https://im2ag-sonar.univ-grenoble-alpes.fr</sonar.host.url>
+        <sonar.host.url>http://im2ag-sonar.u-ga.fr</sonar.host.url>
     </properties>
 
     <dependencies>
