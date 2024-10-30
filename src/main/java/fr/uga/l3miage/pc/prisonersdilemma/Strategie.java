@@ -10,5 +10,5 @@ public abstract class Strategie {
         this.nom = nom;
         this.description = description;
     }
-    public abstract String determinerDecision(List<Tours> tours, Joueur joueur1, Joueur joueur2);
+    public abstract String determinerDecision(List<Tour> tours, Joueur joueur);
 }

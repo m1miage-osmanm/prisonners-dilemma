@@ -13,23 +13,22 @@ public class DonnantDonnantRandom extends Strategie {
     }
 
     @Override
-    public String determinerDecision(List<Tours> tours,
-                                     Joueur joueur,
-                                     Joueur adversaire) {
+    public String determinerDecision(List<Tour> tours,
+                                     Joueur joueur) {
         if (tours.isEmpty()) {
             return "c";   // Premier tour : coopérer
         }
-        Tours dernierTour = tours.get(tours.size()-1);
+        Tour dernierTour = tours.get(tours.size()-1);
 
-        boolean coupAleatoire = random.nextInt(2) == 0;
 
-        if (coupAleatoire) {
-            return random.nextBoolean()? "c" : "t";
+        if (random.nextInt(5) == 0) {
+            return random.nextBoolean() ? "c" : "t";
         }
+
         if (joueur.equals(dernierTour.getPartie().getJoueur1())) {
-            return dernierTour.getDecisionJoueur2(); // Adversaire est joueur2
+            return dernierTour.getDecisionJoueur2();
         } else {
-            return dernierTour.getDecisionJoueur1(); // Adversaire est joueur1
+            return dernierTour.getDecisionJoueur1();
         }
     }
 

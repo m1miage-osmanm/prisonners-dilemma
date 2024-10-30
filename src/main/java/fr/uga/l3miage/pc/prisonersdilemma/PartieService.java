@@ -1,7 +1,6 @@
 package fr.uga.l3miage.pc.prisonersdilemma;
 
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class PartieService {
@@ -24,11 +23,11 @@ public class PartieService {
 
 
 
-        String decisionJoueur1 = partie.getStrategieJoueur1().determinerDecision(partie.getTours(), partie.getJoueur1(), partie.getJoueur2());
-        String decisionJoueur2 = partie.getStrategieJoueur2().determinerDecision(partie.getTours(), partie.getJoueur2(), partie.getJoueur1());
+        String decisionJoueur1 = partie.getStrategieJoueur1().determinerDecision(partie.getTours(), partie.getJoueur1());
+        String decisionJoueur2 = partie.getStrategieJoueur2().determinerDecision(partie.getTours(), partie.getJoueur2());
         //String decisionJoueur2 = "t";
 
-       Tours tours=new Tours(partie,decisionJoueur1,decisionJoueur2);
+       Tour tours=new Tour(partie,decisionJoueur1,decisionJoueur2);
 
 
         partie.ajouterTour(tours);
@@ -58,8 +57,8 @@ public class PartieService {
             throw new IllegalStateException("La partie n'est pas initialisée");
         }
         System.out.println("Résultats des tours :");
-        for (Tours tour : partie.getTours()) {
-            System.out.println("Tour: Joueur 1 - " + tour.getDecisionJoueur1() + ", Joueur 2 - " + tour.getDecisionJoueur2());
+        for (Tour tour : partie.getTours()) {
+            System.out.println("Tour: Joueur 1 - " + tour.getDecisionJoueur1() + ", Joueur 2 - " + tour.getDecisionJoueur2() + ", score joueur 1 - " + tour.getScoreJoueur1() + ", score joueur 2 - " + tour.getScoreJoueur2());
         }
     }
 }

@@ -12,13 +12,13 @@ Random random = new Random();
 
 
 @Override
-public String determinerDecision(List<Tours> tours, Joueur joueur, Joueur adversaire)
+public String determinerDecision(List<Tour> tours, Joueur joueur)
 {
   if (tours.isEmpty())
 {
     return "t";
 }
-Tours dernierTour = tours.get(tours.size()-1);
+Tour dernierTour = tours.get(tours.size()-1);
 boolean coupAleatoire = random.nextInt(2) == 0;
 
     String decisionAdversaire;

@@ -11,14 +11,14 @@ public class PacificateurNaif extends Strategie{
 
 
     @Override
-    public String determinerDecision(List<Tours> tours, Joueur joueur, Joueur adversaire)
+    public String determinerDecision(List<Tour> tours, Joueur joueur)
     {
         if (tours.isEmpty())
         {
             return "c";
         }
-        Tours dernierTour = tours.get(tours.size()-1);
-        boolean coupAleatoire = random.nextInt(2) == 0;
+        Tour dernierTour = tours.get(tours.size()-1);
+        boolean coupAleatoire = random.nextInt(5) == 0;
 
         String decisionAdversaire;
         if (joueur.equals(dernierTour.getPartie().getJoueur1())) {

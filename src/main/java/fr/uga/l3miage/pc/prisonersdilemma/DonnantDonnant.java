@@ -11,16 +11,15 @@ public class DonnantDonnant extends Strategie{
         }
 
         @Override
-        public String determinerDecision(List<Tours> tours,
-                                         Joueur joueur,
-                                         Joueur adversaire) {
+        public String determinerDecision(List<Tour> tours,
+                                         Joueur joueur) {
 
 
             if (tours.isEmpty()) {
                 return "c";   // Premier tour : coopérer
             }
 
-            Tours dernierTour = tours.get(tours.size() - 1);
+            Tour dernierTour = tours.get(tours.size() - 1);
 
             if (joueur.equals(dernierTour.getPartie().getJoueur1())) {
                 return dernierTour.getDecisionJoueur2(); // Adversaire est joueur2

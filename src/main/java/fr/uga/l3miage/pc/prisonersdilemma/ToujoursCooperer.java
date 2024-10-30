@@ -7,9 +7,8 @@ public class ToujoursCooperer extends Strategie{
         super("ToujoursTrahir", "-trahir l'adversaire toujours");
     }
     @Override
-    public String determinerDecision(List<Tours> tours,
-                                     Joueur joueur,
-                                     Joueur adversaire) {
+    public String determinerDecision(List<Tour> tours,
+                                     Joueur joueur) {
         return "c";
     }
 }

@@ -10,14 +10,14 @@ public DonnantDeuxDonnant(){
 }
 
 @Override
-public String determinerDecision(List<Tours> tours, Joueur joueur, Joueur adversaire)
+public String determinerDecision(List<Tour> tours, Joueur joueur)
 {
     if (tours.size() < 2) {
         return "c";
     }
 
-    Tours avantDernierTour = tours.get(tours.size() - 2);
-    Tours dernierTour = tours.get(tours.size() - 1);
+    Tour avantDernierTour = tours.get(tours.size() - 2);
+    Tour  dernierTour = tours.get(tours.size() - 1);
 
     String decisionAdversaireDernierTour;
     String decisionAdversaireAvantDernierTour;
