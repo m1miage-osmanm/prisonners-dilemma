@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>server</module>
+        <module>rest-api</module>
     </modules>
 
     <!-- Parent Spring Boot starter -->
