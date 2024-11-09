@@ -8,6 +8,10 @@
     <groupId>fr.uga.l3miage.pc</groupId>
     <artifactId>prisoners-dilemma</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>server</module>
+    </modules>
 
     <!-- Parent Spring Boot starter -->
     <parent>
