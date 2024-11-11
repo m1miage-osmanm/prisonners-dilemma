@@ -3,13 +3,16 @@ package fr.uga.l3miage.pc.prisonersdilemma.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
-
+    //@Entity
     @Getter
     @Setter
     public abstract class StrategieEntity{
-
+        //@Id
+        private int numeroStrat;
         protected String name;
         protected String description;
 
@@ -17,6 +20,10 @@ import java.util.List;
             this.name = name;
             this.description = description;
         }
+
+       /* public StrategieEntity() {
+
+        }*/
 
         /**
           @param tours Liste des tours précédents.

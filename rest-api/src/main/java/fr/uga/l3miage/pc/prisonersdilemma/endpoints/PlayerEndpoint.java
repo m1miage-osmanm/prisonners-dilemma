@@ -6,5 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/players")
-public class PlayerEndpoint {
+public interface PlayerEndpoint {
+
 }

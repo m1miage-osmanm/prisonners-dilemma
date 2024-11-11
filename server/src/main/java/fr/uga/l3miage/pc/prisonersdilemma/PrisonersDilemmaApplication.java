@@ -1,5 +1,6 @@
 package fr.uga.l3miage.pc.prisonersdilemma;
 
+import fr.uga.l3miage.pc.prisonersdilemma.services.PartieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,13 +21,13 @@ public class PrisonersDilemmaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-
+		/*
 		partieService.initPartie("Alice", "Bob", new SondeurRepentant(),new Pavlov(), 10);
 
 		// Jouer tous les tours
 		partieService.jouerTousLesTours();
 
 		// Afficher les résultats de la partie
-		partieService.afficherResultats();
+		partieService.afficherResultats();*/
 	}
 }

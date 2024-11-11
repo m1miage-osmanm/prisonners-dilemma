@@ -14,23 +14,26 @@ import java.util.ArrayList;
 @Service
 @RequiredArgsConstructor
 public class PartieService {
+        private final PartieComponent partieComponent;
 
-private final PartieComponent partieComponent;
+        public PartieEntity creerPartie2joueurs(JoueurEntity joueur1,
+                                        Integer nbTours) {
 
-public PartieEntity creerPartie(JoueurEntity joueur1,
-                                JoueurEntity joueur2,
-                                Integer nbTours) {
-    return partieComponent.creerPartie(joueur1, joueur2, nbTours);
-}
+            return partieComponent.creerPartie2joueurs(joueur1,nbTours);
+        }
+        public PartieEntity rejoindrePartie(JoueurEntity joueur2, Integer idPartie){
+            return partieComponent.rejoindrePartie(joueur2,idPartie);
+        }
 
-public void ajouterTours (TourEntity tour) {
-    PartieEntity partie = tour.getPartie();
-    if (partie.getTours().size() == partie.getNbTours()) {
-        throw new IllegalStateException("nombre de tours max atteint"); //avant de personnaliser les excep
-    }
+        /*
+        public void ajouterTours (TourEntity tour) {
+            PartieEntity partie = tour.getPartie();
+            if (partie.getTours().size() == partie.getNbTours()) {
+                throw new IllegalStateException("nombre de tours max atteint"); //avant de personnaliser les excep
+            }
 
-    partieComponent.ajouterTour(tour);
-}
+            partieComponent.ajouterTour(tour);
+        }*/
 
 
 

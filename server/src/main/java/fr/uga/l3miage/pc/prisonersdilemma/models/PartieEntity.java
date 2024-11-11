@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class PartieEntity {
-    @SequenceGenerator(
+   @SequenceGenerator(
             name = "sequence_partie",
             sequenceName = "partie_sequence"
     )
@@ -21,17 +21,18 @@ public class PartieEntity {
             generator = "sequence_partie"
     )
     @Id
-    private int id;
+    private Integer id;
     private Integer nbTours;
 
     @OneToMany(mappedBy = "partie")
     private List<TourEntity> tours;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private JoueurEntity joueur1;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private JoueurEntity joueur2;
-
-
+    private Integer idStrategie1;
+    private Integer idStrategie2;
+    private boolean estPret;
 
 }
