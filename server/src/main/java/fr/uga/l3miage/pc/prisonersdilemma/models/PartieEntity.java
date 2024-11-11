@@ -31,8 +31,15 @@ public class PartieEntity {
     private JoueurEntity joueur1;
     @OneToOne(cascade = CascadeType.PERSIST)
     private JoueurEntity joueur2;
-    private Integer idStrategie1;
-    private Integer idStrategie2;
+    @Transient
+    private Strategie strategieJoueur1; //ne reste pas dans la base
+
+    @Transient
+    private Strategie strategieJoueur2; //ne reste pas dans la base
+
+    private String typeStrategieJoueur1;
+    private String typeStrategieJoueur2;
+
     private boolean estPret;
 
 }
