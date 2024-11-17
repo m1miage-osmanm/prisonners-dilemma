@@ -25,6 +25,7 @@ public class PartieService {
             return partieComponent.rejoindrePartie(joueur2,idPartie);
         }
 
+
         /*
         public void ajouterTours (TourEntity tour) {
             PartieEntity partie = tour.getPartie();

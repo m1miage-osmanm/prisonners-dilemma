@@ -16,8 +16,8 @@ public class TourEntity {
     @Id
     private int id;
 
-    private String decisionJoueur1; // coopérer ou trahir
-    private String decisionJoueur2;
+    private TypeDecision decisionJoueur1; // coopérer ou trahir
+    private TypeDecision decisionJoueur2;
 
     private Integer scoreJoueur1;
     private Integer scoreJoueur2;

@@ -4,6 +4,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.strat;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.Strategie;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,24 +21,24 @@ public class SondeurRepentant extends Strategie {
     }
 
     @Override
-    public String determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
+    public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
         if (tours.isEmpty()) {
-            return "c";
+            return TypeDecision.COOPERER;
         }
 
         TourEntity dernierTour = tours.get(tours.size() - 1);
-        String decisionAdversaireDernierTour = joueur.equals(dernierTour.getPartie().getJoueur1())
+        TypeDecision decisionAdversaireDernierTour = joueur.equals(dernierTour.getPartie().getJoueur1())
                 ? dernierTour.getDecisionJoueur2()
                 : dernierTour.getDecisionJoueur1();
 
-        if (trahisonTest && decisionAdversaireDernierTour.equals("t")) {
+        if (trahisonTest && decisionAdversaireDernierTour.equals(TypeDecision.TRAHIR)) {
             trahisonTest = false;
-            return "c";
+            return TypeDecision.COOPERER;
         }
 
         if (!trahisonTest && random.nextInt(5) == 0) {
             trahisonTest = true;
-            return "t";
+            return TypeDecision.TRAHIR;
         }
 
         trahisonTest = false;
