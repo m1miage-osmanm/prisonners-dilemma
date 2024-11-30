@@ -1,0 +1,16 @@
+<div class="partie-container" *ngIf="idPartie; else loading">
+  <h1>Partie ID : {{ idPartie }}</h1>
+  <h2>Bienvenue, {{ username }}</h2>
+
+  <div *ngIf="isWaiting; else gameReady">
+    <p>En attente du deuxième joueur...</p>
+  </div>
+
+  <ng-template #gameReady>
+    <p>Le jeu est prêt à commencer !</p>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Chargement des informations de la partie...</p>
+</ng-template>
