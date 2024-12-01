@@ -140,6 +140,7 @@
                             <goal>build-info</goal>
                         </goals>
                         <configuration>
+
                             <additionalProperties>
                                 <encoding.source>${project.build.sourceEncoding}</encoding.source>
                                 <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>

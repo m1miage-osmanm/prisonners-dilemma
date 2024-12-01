@@ -32,5 +32,6 @@ public class PartieService {
     }
 
     public PartieEntity joueurQuitte(Integer idPartie, Long idJoueur, String typeStrategie) {
+            return null;
     }
 }

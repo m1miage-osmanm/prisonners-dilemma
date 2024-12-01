@@ -7,10 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PrisonersDilemmaApplication implements CommandLineRunner {
-
-	@Autowired
-	private PartieService partieService;
+public class PrisonersDilemmaApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PrisonersDilemmaApplication.class, args);
@@ -18,16 +15,5 @@ public class PrisonersDilemmaApplication implements CommandLineRunner {
 
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
 
-		/*
-		partieService.initPartie("Alice", "Bob", new SondeurRepentant(),new Pavlov(), 10);
-
-		// Jouer tous les tours
-		partieService.jouerTousLesTours();
-
-		// Afficher les résultats de la partie
-		partieService.afficherResultats();*/
-	}
 }
