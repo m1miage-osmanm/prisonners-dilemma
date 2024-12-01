@@ -5,6 +5,7 @@
     <option name="fileExclusions">
       <list>
         <option value="DIRECTORY:server/src/main/resources" />
+        <option value="DIRECTORY:server/src/test" />
       </list>
     </option>
     <option name="moduleMapping">
@@ -13,6 +14,6 @@
       </map>
     </option>
     <option name="projectKey" value="dilemme_prisonnier_grp2_2" />
-    <option name="serverId" value="dilemme_prisonnier_grp2_2" />
+    <option name="serverId" value="prisoners-dilemma" />
   </component>
 </project>

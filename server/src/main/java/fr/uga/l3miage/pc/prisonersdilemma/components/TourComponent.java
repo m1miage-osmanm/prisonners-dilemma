@@ -2,6 +2,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.components;
 
 import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +28,33 @@ public class TourComponent {
     }
 
 
-    private void calculerScores(TourEntity tour) {
-        if ("t".equals(tour.getDecisionJoueur1()) && "c".equals(tour.getDecisionJoueur2())) {
+
+    public void calculerScores(TourEntity tour) {
+
+
+        if (tour.getDecisionJoueur1() == TypeDecision.TRAHIR && tour.getDecisionJoueur2() == TypeDecision.COOPERER) {
             tour.setScoreJoueur1(T);
-
             tour.setScoreJoueur2(D);
-        } else if ("c".equals(tour.getDecisionJoueur1()) && "t".equals(tour.getDecisionJoueur2())) {
+        } else if (tour.getDecisionJoueur1() == TypeDecision.COOPERER && tour.getDecisionJoueur2() == TypeDecision.TRAHIR) {
             tour.setScoreJoueur1(D);
-
             tour.setScoreJoueur2(T);
-        } else if ("c".equals(tour.getDecisionJoueur1()) && "c".equals(tour.getDecisionJoueur2())) {
-
+        } else if (tour.getDecisionJoueur1() == TypeDecision.COOPERER && tour.getDecisionJoueur2() == TypeDecision.COOPERER) {
             tour.setScoreJoueur1(C);
             tour.setScoreJoueur2(C);
-
-        } else if ("t".equals(tour.getDecisionJoueur1()) && "t".equals(tour.getDecisionJoueur2())) {
-
+        } else if (tour.getDecisionJoueur1() == TypeDecision.TRAHIR && tour.getDecisionJoueur2() == TypeDecision.TRAHIR) {
             tour.setScoreJoueur1(P);
-            tour.setScoreJoueur1(P);
-
+            tour.setScoreJoueur2(P);
         }
-        tourRepository.save(tour);
     }
+    public TourEntity choisirDecisionJ1(TourEntity tour, TypeDecision decision) {
+        tour.setDecisionJoueur1(decision);
+        return tourRepository.save(tour);
+    }
+    public TourEntity choisirDecisionJ2(TourEntity tour, TypeDecision decision) {
+        tour.setDecisionJoueur2(decision);
+        return tourRepository.save(tour);
+    }
+
 
 
 }

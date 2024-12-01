@@ -27,7 +27,7 @@ public class JoueurEntity {
     @JoinColumn(name = "partie_id")
     private PartieEntity partie;
 
-    private boolean quitter;
+
 
 
 }
