@@ -28,10 +28,14 @@ public class PartieService {
         }
 
 
-    public void jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1Converted, Optional<TypeDecision> decision2Converted) {
+    public Integer[] jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1Converted, Optional<TypeDecision> decision2Converted) {
+            return partieComponent.jouerUnTour(idPartie,decision1Converted,decision1Converted);
     }
 
     public PartieEntity joueurQuitte(Integer idPartie, Long idJoueur, String typeStrategie) {
-            return null;
+            return partieComponent.joueurQuitte(idPartie,idJoueur,typeStrategie);
     }
+    public Integer[] getScorePartie(Integer idPartie){
+            return partieComponent.scorePartie(idPartie);
+        }
 }

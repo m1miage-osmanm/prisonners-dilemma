@@ -36,20 +36,20 @@ public class PartieController implements PartieEndpoint {
     }
 
     @Override
-    public ResponseEntity<String> jouerUnTour(Integer idPartie, Optional<String> decision1, Optional<String> decision2) {
+    public ResponseEntity<Integer[]> jouerUnTour(Integer idPartie, Optional<String> decision1, Optional<String> decision2) {
         try {
-            // Convertir les décisions String en TypeDecision
+
             Optional<TypeDecision> decision1Converted = decision1.map(dec -> TypeDecision.valueOf(dec.toUpperCase()));
             Optional<TypeDecision> decision2Converted = decision2.map(dec -> TypeDecision.valueOf(dec.toUpperCase()));
 
-            // Appeler la méthode jouerUnTour dans PartieComponent
-            partieService.jouerUnTour(idPartie, decision1Converted, decision2Converted);
 
-            // Retourner un message de succès
-            return ResponseEntity.ok().body(""+idPartie);
+            Integer[] h=partieService.jouerUnTour(idPartie, decision1Converted, decision2Converted);
+
+
+            return new ResponseEntity<>(h,HttpStatus.OK);
         } catch (IllegalArgumentException e) {
 
-            return ResponseEntity.badRequest().body("conversion a echoué");
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -57,6 +57,11 @@ public class PartieController implements PartieEndpoint {
     public ResponseEntity<Integer> joueurQuitte(Integer idPartie, Long idJoueur, String typeStrategie) {
         PartieEntity partie=partieService.joueurQuitte(idPartie,idJoueur,typeStrategie);
         return new ResponseEntity<>(partie.getId(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Integer[]> getResultatPartie(Integer idPartie) {
+        return new ResponseEntity<>(partieService.getScorePartie(idPartie),HttpStatus.OK);
     }
 
 

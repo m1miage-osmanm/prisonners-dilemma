@@ -51,7 +51,7 @@ public class PartieComponent {
 
 
     @Transactional
-    public TourEntity jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1, Optional<TypeDecision> decision2) {
+    public Integer[] jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1, Optional<TypeDecision> decision2) {
         // Récupérer la partie
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
                 .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
@@ -81,7 +81,7 @@ public class PartieComponent {
 
         System.out.println("Tour joué : Joueur 1 a choisi " + decision1 + ", Joueur 2 a choisi " + decision2);
 
-        return tour;
+        return new Integer[]{tour.getScoreJoueur1(), tour.getScoreJoueur2()};
     }
 
 
@@ -113,4 +113,19 @@ public class PartieComponent {
         return partieRepository.save(partie);
 
     }
+    public Integer[] scorePartie(Integer idPartie) {
+        PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
+                .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
+        Integer[] scores = new Integer[2];
+        int scoreTotJ1=0;
+        int scoreTotJ2=0;
+        for (TourEntity tour : partie.getTours()) {
+            scoreTotJ1 = scoreTotJ1+tour.getScoreJoueur1();
+            scoreTotJ2 = scoreTotJ2+tour.getScoreJoueur2();
+        }
+        scores[0]=scoreTotJ1;
+        scores[1]=scoreTotJ2;
+        return scores;
+    }
+
 }

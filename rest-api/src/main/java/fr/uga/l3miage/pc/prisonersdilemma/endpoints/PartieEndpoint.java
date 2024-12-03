@@ -16,7 +16,7 @@ public interface PartieEndpoint {
 
 
     @PostMapping("/jouerTour/{idPartie}")
-    public ResponseEntity<String> jouerUnTour(
+    public ResponseEntity<Integer[]> jouerUnTour(
             @PathVariable Integer idPartie,
             @RequestParam Optional<String> decision1,
             @RequestParam Optional<String> decision2
@@ -28,5 +28,6 @@ public interface PartieEndpoint {
             @PathVariable Long idJoueur,
             @RequestParam String typeStrategie
     );
-
+    @GetMapping("/{idPartie}/getResultat")
+    public ResponseEntity<Integer[]> getResultatPartie(@PathVariable Integer idPartie);
 }
