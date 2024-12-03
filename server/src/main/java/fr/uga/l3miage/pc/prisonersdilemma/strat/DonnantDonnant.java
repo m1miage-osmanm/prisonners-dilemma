@@ -4,6 +4,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.strat;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.Strategie;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class DonnantDonnant extends Strategie {
         }
 
         @Override
-        public String determinerDecision(List<TourEntity> tours,
-                                         JoueurEntity joueur) {
+        public TypeDecision determinerDecision(List<TourEntity> tours,
+                                               JoueurEntity joueur) {
 
 
             if (tours.isEmpty()) {
-                return "c";   // Premier tour : coopérer
+                return TypeDecision.COOPERER;   // Premier tour : coopérer
             }
 
             TourEntity dernierTour = tours.get(tours.size() - 1);

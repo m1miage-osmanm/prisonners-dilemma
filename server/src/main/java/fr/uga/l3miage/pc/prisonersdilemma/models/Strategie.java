@@ -30,7 +30,7 @@ import java.util.List;
 
           @return 'c' pour coopérer, 't' pour trahir.
          */
-        public abstract String determinerDecision(List<TourEntity> tours,
+        public abstract TypeDecision determinerDecision(List<TourEntity> tours,
                                                   JoueurEntity joueur
                                                   );
     }

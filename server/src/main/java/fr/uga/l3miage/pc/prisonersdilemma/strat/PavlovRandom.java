@@ -4,6 +4,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.strat;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.Strategie;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,14 +19,14 @@ public class PavlovRandom extends Strategie {
     }
 
     @Override
-    public String determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
+    public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
         if (tours.isEmpty()) {
-            return "c";
+            return TypeDecision.COOPERER;
         }
 
 
         TourEntity dernierTour = tours.get(tours.size() - 1);
-        String decisionPrecedente;
+        TypeDecision decisionPrecedente;
         int scorePrecedent;
 
 
@@ -40,11 +41,11 @@ public class PavlovRandom extends Strategie {
         if (scorePrecedent == 5 || scorePrecedent == 3) {
 
             if (random.nextInt(5) == 0) {
-                return random.nextBoolean() ? "c" : "t";
+                return random.nextBoolean() ? TypeDecision.COOPERER : TypeDecision.TRAHIR;
             }
             return decisionPrecedente;
         } else {
-            return "c";
+            return TypeDecision.COOPERER;
         }
     }
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SonarLintProjectSettings">
+    <option name="fileExclusions">
+      <list>
+        <option value="DIRECTORY:server/src/main/resources" />
+        <option value="DIRECTORY:server/src/test" />
+      </list>
+    </option>
     <option name="moduleMapping">
       <map>
         <entry key="rest-api" value="untitled" />
