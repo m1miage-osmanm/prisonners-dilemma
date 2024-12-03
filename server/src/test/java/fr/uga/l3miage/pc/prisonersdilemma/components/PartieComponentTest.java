@@ -11,6 +11,7 @@ import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
 
@@ -111,15 +112,37 @@ class PartieComponentTest {
 
     @Test
     void testJouerUnTourPartieTerminee() {
-        // Given
         JoueurEntity joueur1 = JoueurEntity.builder().username("Alice").build();
         JoueurEntity joueur2 = JoueurEntity.builder().username("Bob").build();
-        PartieEntity partie = PartieEntity.builder().id(1).joueur1(joueur1).joueur2(joueur2).nbTours(1).tours(new ArrayList<>()).estPret(true).build();
+
+        TourEntity tourJoue = TourEntity.builder()
+                .scoreJoueur1(3)
+                .scoreJoueur2(5)
+                .decisionJoueur1(TypeDecision.COOPERER)
+                .decisionJoueur2(TypeDecision.TRAHIR)
+                .build();
+
+        PartieEntity partie = PartieEntity.builder()
+                .id(1)
+                .joueur1(joueur1)
+                .joueur2(joueur2)
+                .nbTours(1)
+                .tours(new ArrayList<>(List.of(tourJoue))) // Ce tour a déjà été joué
+                .estPret(true)
+                .build();
 
         when(partieRepository.findPartieEntityById(1)).thenReturn(Optional.of(partie));
 
-        // When & Then
-        assertThrows(IllegalStateException.class, () -> partieComponent.jouerUnTour(1, Optional.of(TypeDecision.COOPERER), Optional.of(TypeDecision.TRAHIR)));
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class,
+                () -> partieComponent.jouerUnTour(1, Optional.of(TypeDecision.COOPERER), Optional.of(TypeDecision.TRAHIR))
+        );
+
+        // Assertions
+        assertThat(exception.getMessage()).isEqualTo("Tous les tours de la partie ont déjà été joués.");
         verify(partieRepository, times(1)).findPartieEntityById(1);
+        verifyNoInteractions(tourComponent); // Aucun appel à tourComponent car le tour ne doit pas être créé
     }
+
+
 }
