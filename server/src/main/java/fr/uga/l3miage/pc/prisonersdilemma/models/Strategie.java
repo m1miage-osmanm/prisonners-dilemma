@@ -15,7 +15,7 @@ import java.util.List;
 
         protected String description;
 
-        public Strategie(String name, String description) {
+        protected Strategie(String name, String description) {
             this.name = name;
             this.description = description;
         }

@@ -1,34 +1,27 @@
 package fr.uga.l3miage.pc.prisonersdilemma.strat;
 
 import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.RandomAdapter;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class DonnantDeuxDonnantRandom extends DonnantDeuxDonnantAbstract {
 
-    private final RandomAdapter randomGenerator;
+    private final Random random = new Random();
 
-    public DonnantDeuxDonnantRandom(RandomAdapter randomGenerator) {
+    public DonnantDeuxDonnantRandom() {
         super(
                 "DonnantDeuxDonnantRandom",
                 "Comme donnant-donnant sauf que l'adversaire doit faire le même choix deux fois de suite avant la réciprocité. Joue parfois un coup au hasard."
         );
-        this.randomGenerator = randomGenerator;
-    }
-    public DonnantDeuxDonnantRandom(){
-        super(
-                "DonnantDeuxDonnantRandom",
-                "Comme donnant-donnant sauf que l'adversaire doit faire le même choix deux fois de suite avant la réciprocité. Joue parfois un coup au hasard."
-        );
-        this.randomGenerator = new RandomAdapter();
     }
 
     @Override
-    public TypeDecision decisionAvecRéciprocité(TypeDecision decisionAdversaire) {
+    protected TypeDecision decisionAvecRéciprocité(TypeDecision decisionAdversaire) {
         // Avec une probabilité de 1/5, jouer aléatoirement
-        if (randomGenerator.nextInt(5) == 0) {
-            return randomGenerator.nextBoolean() ? TypeDecision.COOPERER : TypeDecision.TRAHIR;
+        if (random.nextInt(5) == 0) {
+            return random.nextBoolean() ? TypeDecision.COOPERER : TypeDecision.TRAHIR;
         }
         return decisionAdversaire; // Sinon, réciprocité
     }

@@ -6,7 +6,7 @@ import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.services.StrategieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -30,11 +30,14 @@ class PartieComponentTest {
     private TourComponent tourComponent;
     private StrategieService strategieService;
     private PartieComponent partieComponent;
-
+    @Autowired
+    private TourRepository tourRepository;
 
     @BeforeEach
     void setUp() {
         partieRepository = mock(PartieRepository.class);
+        //tourRepository=mock(TourRepository.class);
+        //tourComponent = new TourComponent(tourRepository);
         tourComponent= mock(TourComponent.class);
         strategieService = mock(StrategieService.class);
 
