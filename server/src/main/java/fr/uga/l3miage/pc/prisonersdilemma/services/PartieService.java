@@ -4,13 +4,12 @@ package fr.uga.l3miage.pc.prisonersdilemma.services;
 import fr.uga.l3miage.pc.prisonersdilemma.components.PartieComponent;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
+
 import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
+
 import java.util.Optional;
 
 @Service
@@ -29,7 +28,7 @@ public class PartieService {
 
 
     public Integer[] jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1Converted, Optional<TypeDecision> decision2Converted) {
-            return partieComponent.jouerUnTour(idPartie,decision1Converted,decision1Converted);
+            return partieComponent.jouerUnTour(idPartie,decision1Converted,decision2Converted);
     }
 
     public PartieEntity joueurQuitte(Integer idPartie, Long idJoueur, String typeStrategie) {

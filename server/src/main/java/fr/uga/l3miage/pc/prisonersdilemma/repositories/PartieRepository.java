@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PartieRepository extends JpaRepository<PartieEntity,String> {
+public interface PartieRepository extends JpaRepository<PartieEntity,Integer> {
     public Optional<PartieEntity> findPartieEntityById(Integer id);
 }

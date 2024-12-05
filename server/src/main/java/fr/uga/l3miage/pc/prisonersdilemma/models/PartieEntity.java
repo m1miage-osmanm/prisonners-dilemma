@@ -24,7 +24,7 @@ public class PartieEntity {
     private Integer id;
     private Integer nbTours;
 
-    @OneToMany(mappedBy = "partie")
+    @OneToMany(mappedBy = "partie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourEntity> tours;
 
     @OneToOne(cascade = CascadeType.PERSIST)

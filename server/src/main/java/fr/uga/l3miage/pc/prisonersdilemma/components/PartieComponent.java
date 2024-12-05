@@ -21,6 +21,8 @@ public class PartieComponent {
     private final PartieRepository partieRepository;
     private final TourComponent tourComponent;
     private final StrategieService strategieService;
+    private String noExist= " does not exist.";
+    private String id="Partie with ID ";
     @Transactional
     public PartieEntity creerPartie2joueurs(JoueurEntity joueur1, Integer nbTours) {
         PartieEntity partie = PartieEntity.builder()
@@ -39,7 +41,7 @@ public class PartieComponent {
     public PartieEntity rejoindrePartie(JoueurEntity joueur2, Integer idPartie) {
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie).orElse(null);
         if (partie == null) {
-            throw new IllegalArgumentException("Partie with ID " + idPartie + " does not exist.");
+            throw new IllegalArgumentException(id + idPartie + noExist);
         }
         partie.setJoueur2(joueur2);
         partie.setEstPret(true);
@@ -55,7 +57,7 @@ public class PartieComponent {
     public Integer[] jouerUnTour(Integer idPartie, Optional<TypeDecision> decision1, Optional<TypeDecision> decision2) {
         // Récupérer la partie
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
-                .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
+                .orElseThrow(() -> new IllegalArgumentException(id + idPartie + noExist));
 
         // Vérifier si la partie est prête
         if (!partie.isEstPret()) {
@@ -80,7 +82,6 @@ public class PartieComponent {
         partie.getTours().add(tour);
         partieRepository.save(partie);
 
-        System.out.println("Tour joué : Joueur 1 a choisi " + decision1 + ", Joueur 2 a choisi " + decision2);
 
         return new Integer[]{tour.getScoreJoueur1(), tour.getScoreJoueur2()};
     }
@@ -99,8 +100,9 @@ public class PartieComponent {
     }
 
     public PartieEntity joueurQuitte(Integer idPartie,Long idJoueur,String typeStrategie) {
+
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
-                .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
+                .orElseThrow(() -> new IllegalArgumentException(id + idPartie + noExist));
         if (partie.getJoueur1().getId().equals(idJoueur)) {
 
             partie.setTypeStrategieJoueur1(typeStrategie);}
@@ -116,7 +118,7 @@ public class PartieComponent {
     }
     public Integer[] scorePartie(Integer idPartie) {
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
-                .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
+                .orElseThrow(() -> new IllegalArgumentException(id + idPartie + noExist));
         Integer[] scores = new Integer[2];
         int scoreTotJ1=0;
         int scoreTotJ2=0;

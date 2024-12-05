@@ -12,7 +12,7 @@ import java.util.Random;
 @Component
 public class SondeurRepentant extends Strategie {
 
-    final private Random random = new Random();
+    private final Random random = new Random();
     private boolean trahisonTest = false;
 
     public SondeurRepentant() {

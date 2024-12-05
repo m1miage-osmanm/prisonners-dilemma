@@ -19,6 +19,7 @@ public class PartieController implements PartieEndpoint {
 
     @Autowired
     private PartieService partieService;
+    @Autowired
     private PartieRepository partieRepository;
 
 

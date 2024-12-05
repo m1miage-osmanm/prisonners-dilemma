@@ -2,10 +2,12 @@ package fr.uga.l3miage.pc.prisonersdilemma.components;
 
 import fr.uga.l3miage.pc.prisonersdilemma.models.*;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
+import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.services.StrategieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,6 +17,7 @@ import static org.mockito.Mockito.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -27,11 +30,15 @@ class PartieComponentTest {
     private TourComponent tourComponent;
     private StrategieService strategieService;
     private PartieComponent partieComponent;
+    @Autowired
+    private TourRepository tourRepository;
 
     @BeforeEach
     void setUp() {
         partieRepository = mock(PartieRepository.class);
-        tourComponent = mock(TourComponent.class);
+        //tourRepository=mock(TourRepository.class);
+        //tourComponent = new TourComponent(tourRepository);
+        tourComponent= mock(TourComponent.class);
         strategieService = mock(StrategieService.class);
 
         partieComponent = new PartieComponent(partieRepository, tourComponent, strategieService);
@@ -313,5 +320,40 @@ class PartieComponentTest {
         verify(partieRepository, times(1)).findPartieEntityById(1);
     }
 
+    @Test
+    void jouerUnTour_avecDecisionsValides_succes() {
+
+        PartieEntity partie = PartieEntity.builder()
+                .tours(new ArrayList<>())
+                .nbTours(5)
+                .estPret(true)
+                .joueur1(JoueurEntity.builder().username("Joueur1").build())
+                .joueur2(JoueurEntity.builder().username("Joueur2").build())
+                .build();
+        partieRepository.save(partie);
+        TourEntity tour=TourEntity.builder().build();
+        when(partieRepository.findPartieEntityById(2)).thenReturn(Optional.of(partie));
+        when(tourComponent.creerEtSauvegarderTour(partie)).thenReturn(tour);
+
+        doAnswer(invocation -> {
+            TourEntity tourArg = invocation.getArgument(0);
+            tourArg.setScoreJoueur1(0); // Score pour COOPERER contre TRAHIR
+            tourArg.setScoreJoueur2(5); // Score pour TRAHIR contre COOPERER
+            return null;
+        }).when(tourComponent).calculerScores(any(TourEntity.class));
+
+
+        Integer[] scores = partieComponent.jouerUnTour(
+                2,
+                Optional.of(TypeDecision.COOPERER),
+                Optional.of(TypeDecision.TRAHIR)
+        );
+
+        assertEquals(1, partie.getTours().size());
+        assertEquals(0, scores[0]);
+        assertEquals(5, scores[1]);
+
+
+    }
 
 }
