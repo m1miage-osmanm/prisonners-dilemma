@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect")
 @ActiveProfiles("test")
-public class PartieControllerTest {
+class PartieControllerTest {
     @Autowired
     private PartieRepository partieRepository;
 
@@ -129,21 +129,23 @@ public class PartieControllerTest {
         System.out.println(Arrays.toString(response.getBody()));
         assertEquals(2, response.getBody().length);
     }
-/*
+
     @Test
     public void joueurQuitteSuccess() {
-        // Création d'une partie avec un joueur
+
         JoueurEntity joueur1 = JoueurEntity.builder().username("Player1").build();
-        joueurRepository.save(joueur1);
+
         PartieEntity partie = PartieEntity.builder()
                 .joueur1(joueur1)
+                .estPret(true)
+                .tours(new ArrayList<>())
                 .nbTours(5)
                 .build();
         partieRepository.save(partie);
 
         Long idJoueur = joueur1.getId();
         Integer idPartie = partie.getId();
-        String typeStrategie = "defensive";
+        String typeStrategie = "DonnantDeuxDonnant";
 
         // Appel de l'API
         ResponseEntity<Integer> response = testRestTemplate.postForEntity(
@@ -161,7 +163,8 @@ public class PartieControllerTest {
     @Test
     public void getResultatPartieSuccess() {
         // Création d'une partie avec résultats fictifs
-        PartieEntity partie = PartieEntity.builder().nbTours(5).build();
+        PartieEntity partie = PartieEntity.builder().estPret(true)
+                .tours(new ArrayList<>()).nbTours(5).build();
         partieRepository.save(partie);
 
         Integer idPartie = partie.getId();
@@ -195,6 +198,6 @@ public class PartieControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
     }
-*/
+
 
 }
