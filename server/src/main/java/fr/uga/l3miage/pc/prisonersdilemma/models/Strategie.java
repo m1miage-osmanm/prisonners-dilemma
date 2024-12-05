@@ -8,33 +8,20 @@ import java.util.List;
     //@Entity
     @Getter
     @Setter
-    public abstract class Strategie{
-        //@Id
+    public abstract class Strategie {
+
         private int numeroStrat;
         protected String name;
 
         protected String description;
 
-        public Strategie(String name, String description) {
+        protected Strategie(String name, String description) {
             this.name = name;
             this.description = description;
         }
 
-       /* public StrategieEntity() {
-
-        }*/
-
-        /**
-          @param tours Liste des tours précédents.
-          @param joueur Le joueur actuel.
-
-          @return 'c' pour coopérer, 't' pour trahir.
-         */
-        public abstract TypeDecision determinerDecision(List<TourEntity> tours,
-                                                  JoueurEntity joueur
-                                                  );
+        public abstract TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur);
     }
-
 
 
 

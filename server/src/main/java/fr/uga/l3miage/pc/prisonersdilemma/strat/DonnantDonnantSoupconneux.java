@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-public class DonnantDonnantSoupçonneux extends Strategie {
+public class DonnantDonnantSoupconneux extends Strategie {
 
-    public DonnantDonnantSoupçonneux() {
+    public DonnantDonnantSoupconneux() {
         super(" DonnantDonnantSoupçonneux","Comme donnant donnant, mais commencer par trahir ");
     }
 
