@@ -5,6 +5,7 @@ import fr.uga.l3miage.pc.prisonersdilemma.endpoints.PartieEndpoint;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.services.PartieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ public class PartieController implements PartieEndpoint {
 
     @Autowired
     private PartieService partieService;
+    private PartieRepository partieRepository;
 
 
 
@@ -63,6 +65,15 @@ public class PartieController implements PartieEndpoint {
     public ResponseEntity<Integer[]> getResultatPartie(Integer idPartie) {
         return new ResponseEntity<>(partieService.getScorePartie(idPartie),HttpStatus.OK);
     }
+    @Override
+    public ResponseEntity<Boolean> getestPret( Integer idPartie) {
+        Optional<PartieEntity> partie = partieRepository.findPartieEntityById(idPartie);
 
+        if (partie.isPresent()) {
+            return new ResponseEntity<>(partie.get().isEstPret(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

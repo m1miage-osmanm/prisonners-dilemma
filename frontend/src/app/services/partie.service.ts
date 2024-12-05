@@ -17,7 +17,9 @@ export class PartieService {
   joinGame(nameJ2: string, idPartie: number): Observable<number> {
     return this.http.post<number>(`${this.apiUrl}/join/${nameJ2}/${idPartie}`, {});
   }
-  getGameState(idPartie: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${idPartie}`);
+
+  getEstPret(idPartie: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/${idPartie}/estPret`);
   }
+
 }

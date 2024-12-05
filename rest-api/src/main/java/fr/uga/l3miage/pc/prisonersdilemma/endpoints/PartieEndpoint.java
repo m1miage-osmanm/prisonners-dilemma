@@ -30,4 +30,8 @@ public interface PartieEndpoint {
     );
     @GetMapping("/{idPartie}/getResultat")
     public ResponseEntity<Integer[]> getResultatPartie(@PathVariable Integer idPartie);
+    @GetMapping("/{idPartie}/estPret")
+    public ResponseEntity<Boolean> getestPret(@PathVariable Integer idPartie);
+
+
 }
