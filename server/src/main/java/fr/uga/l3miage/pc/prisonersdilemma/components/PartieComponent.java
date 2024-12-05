@@ -34,6 +34,7 @@ public class PartieComponent {
 
     }
 
+
     @Transactional
     public PartieEntity rejoindrePartie(JoueurEntity joueur2, Integer idPartie) {
         PartieEntity partie = partieRepository.findPartieEntityById(idPartie).orElse(null);
@@ -86,7 +87,7 @@ public class PartieComponent {
 
 
 
-    private TypeDecision obtenirDecision(Optional<TypeDecision> decisionOptionnelle, String typeStrategie, List<TourEntity> tours, JoueurEntity joueur) {
+    protected TypeDecision obtenirDecision(Optional<TypeDecision> decisionOptionnelle, String typeStrategie, List<TourEntity> tours, JoueurEntity joueur) {
         if (decisionOptionnelle.isEmpty()) {
 
             Strategie strategie = strategieService.getStrategie(typeStrategie);
