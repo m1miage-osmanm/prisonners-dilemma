@@ -12,14 +12,19 @@ import java.util.Random;
 @Component
 public class SondeurRepentant extends Strategie {
 
-    private final Random random = new Random();
+    private final RandomAdapter random ;
     private boolean trahisonTest = false;
 
     public SondeurRepentant() {
         super("SondeurRepentant", "Jouer comme le dernier coup de l'adversaire, mais parfois trahir au lieu de coopérer. \n" +
                 "Si l'adversaire trahit en réponse au test, se montrer repentant en coopérant immédiatement.");
+    random = new RandomAdapter();
     }
-
+    public SondeurRepentant(RandomAdapter random) {
+        super("SondeurRepentant", "Jouer comme le dernier coup de l'adversaire, mais parfois trahir au lieu de coopérer. \n" +
+                "Si l'adversaire trahit en réponse au test, se montrer repentant en coopérant immédiatement.");
+        this.random = random;
+    }
     @Override
     public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
         if (tours.isEmpty()) {

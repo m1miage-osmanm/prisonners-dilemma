@@ -13,12 +13,18 @@ import java.util.Random;
 @Component
 public class Aleatoire extends Strategie {
 
-    private final Random random = new Random();
+    private final RandomAdapter random;
 
 
     public Aleatoire() {
 
         super("Aléatoire", "Trahir ou coopérer avec une probabilité de 50%");
+        random = new RandomAdapter();
+    }
+    public Aleatoire(RandomAdapter random) {
+
+        super("Aléatoire", "Trahir ou coopérer avec une probabilité de 50%");
+        this.random = random;
     }
 
     @Override
