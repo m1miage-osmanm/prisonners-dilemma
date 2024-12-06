@@ -16,6 +16,13 @@ public class DonnantDeuxDonnantRandom extends DonnantDeuxDonnantAbstract {
         );
         this.randomGenerator = randomGenerator;
     }
+    public DonnantDeuxDonnantRandom(){
+        super(
+                "DonnantDeuxDonnantRandom",
+                "Comme donnant-donnant sauf que l'adversaire doit faire le même choix deux fois de suite avant la réciprocité. Joue parfois un coup au hasard."
+        );
+        this.randomGenerator = new RandomAdapter();
+    }
 
     @Override
     public TypeDecision decisionAvecRéciprocité(TypeDecision decisionAdversaire) {
