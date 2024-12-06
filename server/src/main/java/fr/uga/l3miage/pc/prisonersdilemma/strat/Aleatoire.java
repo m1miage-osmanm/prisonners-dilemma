@@ -9,7 +9,7 @@ import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Random;
+
 @Component
 public class Aleatoire extends Strategie {
 
