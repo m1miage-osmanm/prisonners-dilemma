@@ -14,10 +14,15 @@ import java.util.Random;
 public class SondeurNaif extends Strategie {
 
 public SondeurNaif() {
-    super("SondeurNaif","Jouer comme le dernier coup de l'adversaire mais parfois trahir au lieu de coopérer"); }
+    super("SondeurNaif","Jouer comme le dernier coup de l'adversaire mais parfois trahir au lieu de coopérer");
+    random = new RandomAdapter();
+}
 
-Random random = new Random();
-
+RandomAdapter random ;
+public SondeurNaif(RandomAdapter random) {
+    super("SondeurNaif","Jouer comme le dernier coup de l'adversaire mais parfois trahir au lieu de coopérer");
+    this.random = random;
+}
 
 @Override
 public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur)

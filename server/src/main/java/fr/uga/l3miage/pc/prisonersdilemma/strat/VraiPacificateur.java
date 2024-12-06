@@ -12,11 +12,17 @@ import java.util.Random;
 @Component
 public class VraiPacificateur extends Strategie {
 
-    private final Random random = new Random();
+    private final RandomAdapter random ;
 
     public VraiPacificateur() {
         super("VraiPacificateur",
                 "Coopérer si l'adversaire ne trahit pas deux fois de suite. Trahir alors immédiatement mais essayer parfois de faire la paix en coopérant au lieu de trahir.");
+        random = new RandomAdapter();
+    }
+    public VraiPacificateur(RandomAdapter randomAdapter) {
+        super("VraiPacificateur",
+                "Coopérer si l'adversaire ne trahit pas deux fois de suite. Trahir alors immédiatement mais essayer parfois de faire la paix en coopérant au lieu de trahir.");
+        this.random = randomAdapter;
     }
 
     @Override

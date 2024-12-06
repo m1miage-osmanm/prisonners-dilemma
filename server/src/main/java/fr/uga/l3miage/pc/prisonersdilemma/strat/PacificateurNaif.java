@@ -9,23 +9,29 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
+
+
 @Component
 public class PacificateurNaif extends Strategie {
-    public PacificateurNaif() {
-    super("PacificateurNaif","Jouer comme le dernier coup de l'adversaire mais parfois coopérer au lieu de trahir"); }
 
-    Random random = new Random();
+    private final RandomAdapter randomGenerator;
 
+    public PacificateurNaif(RandomAdapter randomGenerator) {
+        super("PacificateurNaif", "Jouer comme le dernier coup de l'adversaire mais parfois coopérer au lieu de trahir");
+        this.randomGenerator = randomGenerator;
+    }
+    public PacificateurNaif(){
+        super("PacificateurNaif", "Jouer comme le dernier coup de l'adversaire mais parfois coopérer au lieu de trahir");
+        this.randomGenerator = new RandomAdapter();
+    }
 
     @Override
-    public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur)
-    {
-        if (tours.isEmpty())
-        {
+    public TypeDecision determinerDecision(List<TourEntity> tours, JoueurEntity joueur) {
+        if (tours.isEmpty()) {
             return TypeDecision.COOPERER;
         }
-        TourEntity dernierTour = tours.get(tours.size()-1);
-        boolean coupAleatoire = random.nextInt(5) == 0;
+        TourEntity dernierTour = tours.get(tours.size() - 1);
+        boolean coupAleatoire = randomGenerator.nextInt(5) == 0;
 
         TypeDecision decisionAdversaire;
         if (joueur.equals(dernierTour.getPartie().getJoueur1())) {
@@ -39,4 +45,5 @@ public class PacificateurNaif extends Strategie {
         }
 
         return decisionAdversaire;
-}}
+    }
+}
