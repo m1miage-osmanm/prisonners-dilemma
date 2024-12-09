@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PartieService {
-  private apiUrl = 'http://localhost:8080/api/parties';
+  private apiUrl = 'http://localhost:5050/api/parties';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +21,16 @@ export class PartieService {
   getEstPret(idPartie: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.apiUrl}/${idPartie}/estPret`);
   }
+  jouerTour(idPartie: number, decision: string): Observable<void> {
+    return this.http.post<void>(
+      `${this.apiUrl}/jouerTour/${idPartie}?decision=${decision}`,
+      {}
+    );
+  }
+
+  checkTour(idPartie: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/${idPartie}/checkDecisions`);
+  }
+
 
 }

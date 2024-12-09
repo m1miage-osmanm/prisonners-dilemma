@@ -54,7 +54,7 @@ export class AccueilComponent {
       this.partieService.joinGame(this.username, this.idPartie).subscribe({
         next: (response: number) => {
           alert(`Vous avez rejoint la partie avec succès !`);
-          this.router.navigate(['/partie', this.idPartie]);
+          this.router.navigate(['/tour', this.idPartie]);
         },
         error: (err) => {
           console.error('Erreur lors de la jonction à la partie:', err);

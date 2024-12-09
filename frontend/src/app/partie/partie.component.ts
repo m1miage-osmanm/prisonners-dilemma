@@ -37,7 +37,7 @@ export class PartieComponent implements OnInit, OnDestroy {
           this.isReady = isReady;
           if (this.isReady) {
             alert('La partie est prête !');
-            this.router.navigate(['/game', this.idPartie]); // Redirige vers le jeu
+            this.router.navigate(['/tour', this.idPartie]); // Redirige vers le jeu
           }
         },
         error: (err) => {
