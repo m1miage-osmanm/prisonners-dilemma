@@ -4,6 +4,7 @@ package fr.uga.l3miage.pc.prisonersdilemma.controllers;
 import fr.uga.l3miage.pc.prisonersdilemma.endpoints.PartieEndpoint;
 import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.services.PartieService;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -71,10 +73,25 @@ public class PartieController implements PartieEndpoint {
         Optional<PartieEntity> partie = partieRepository.findPartieEntityById(idPartie);
 
         if (partie.isPresent()) {
+            System.out.println(partie.get().isEstPret());
             return new ResponseEntity<>(partie.get().isEstPret(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @Override
+    public ResponseEntity<Boolean> checkDecisions( Integer idPartie) {
+        PartieEntity partie = partieRepository.findPartieEntityById(idPartie)
+                .orElseThrow(() -> new IllegalArgumentException("Partie with ID " + idPartie + " does not exist."));
 
+        List<TourEntity> tours = partie.getTours();
+        if (!tours.isEmpty()) {
+            TourEntity dernierTour = tours.get(tours.size() - 1);
+            boolean bothDecisionsPresent = dernierTour.getDecisionJoueur1() != null &&
+                    dernierTour.getDecisionJoueur2() != null;
+            return ResponseEntity.ok(bothDecisionsPresent);
+        }
+
+        return ResponseEntity.ok(false);
+    }
 }
