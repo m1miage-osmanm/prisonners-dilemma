@@ -1,0 +1,73 @@
+/* Conteneur principal */
+.tour-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Titre du tour */
+.tour-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Label pour la décision */
+.tour-container label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Champ de saisie */
+.tour-container input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.tour-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Bouton de soumission */
+.tour-container button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tour-container button:hover {
+  background-color: #0056b3;
+}
+
+.tour-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Texte pour le chargement ou l'attente */
+.tour-container p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 15px;
+}
