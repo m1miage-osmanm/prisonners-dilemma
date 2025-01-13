@@ -1,5 +1,6 @@
 server:
   port: 5050
+  address: 0.0.0.0
 
 spring:
   datasource:
@@ -13,8 +14,9 @@ spring:
       ddl-auto: update
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
 l3:
   miage:
     webservice:
       rest:
-        url: "http://localhost:8080"
+        url: "http://129.88.210.94:5050"
