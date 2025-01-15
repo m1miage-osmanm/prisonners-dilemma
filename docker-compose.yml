@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  example-db:
+    image: postgres:16
+    container_name: example-db
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_example
+    restart: always
+    depends_on:
+      - example-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+
+  app:
+    image: pc-project:proj
+    container_name: pc-project
+    restart: always
+    depends_on:
+      - example-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://example-db:5432/mydatabase
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "5050:5050"
+
+volumes:
+  postgres-data:

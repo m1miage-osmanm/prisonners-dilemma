@@ -1,0 +1,1 @@
+web: java -jar server/target/pc-project.jar
