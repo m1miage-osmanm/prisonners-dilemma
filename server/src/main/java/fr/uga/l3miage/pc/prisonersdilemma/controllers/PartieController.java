@@ -2,12 +2,12 @@ package fr.uga.l3miage.pc.prisonersdilemma.controllers;
 
 
 import fr.uga.l3miage.pc.prisonersdilemma.endpoints.PartieEndpoint;
-import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.ports.in.IpartieService;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
-import fr.uga.l3miage.pc.prisonersdilemma.services.PartieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class PartieController implements PartieEndpoint {
 
     @Autowired
-    private PartieService partieService;
+    private IpartieService IpartieService;
     @Autowired
     private PartieRepository partieRepository;
 
@@ -29,14 +29,14 @@ public class PartieController implements PartieEndpoint {
     @Override
     public ResponseEntity<Integer> creerPartie2joueurs(String nameJ1, Integer nbTours) {
         JoueurEntity joueur=JoueurEntity.builder().username(nameJ1).build();
-        PartieEntity partie=partieService.creerPartie2joueurs(joueur,nbTours);
+        PartieEntity partie=IpartieService.creerPartie2joueurs(joueur,nbTours);
         return new ResponseEntity<>(partie.getId(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Integer> rejoindrePartie(String nameJ2, Integer idPartie) {
         JoueurEntity joueur=JoueurEntity.builder().username(nameJ2).build();
-        PartieEntity partie=partieService.rejoindrePartie(joueur,idPartie);
+        PartieEntity partie=IpartieService.rejoindrePartie(joueur,idPartie);
         return new ResponseEntity<>(partie.getId(), HttpStatus.OK);
     }
 
@@ -48,7 +48,7 @@ public class PartieController implements PartieEndpoint {
             Optional<TypeDecision> decision2Converted = decision2.map(dec -> TypeDecision.valueOf(dec.toUpperCase()));
 
 
-            Integer[] h=partieService.jouerUnTour(idPartie, decision1Converted, decision2Converted);
+            Integer[] h=IpartieService.jouerUnTour(idPartie, decision1Converted, decision2Converted);
 
 
             return new ResponseEntity<>(h,HttpStatus.OK);
@@ -60,13 +60,13 @@ public class PartieController implements PartieEndpoint {
 
     @Override
     public ResponseEntity<Integer> joueurQuitte(Integer idPartie, Long idJoueur, String typeStrategie) {
-        PartieEntity partie=partieService.joueurQuitte(idPartie,idJoueur,typeStrategie);
+        PartieEntity partie=IpartieService.joueurQuitte(idPartie,idJoueur,typeStrategie);
         return new ResponseEntity<>(partie.getId(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Integer[]> getResultatPartie(Integer idPartie) {
-        return new ResponseEntity<>(partieService.getScorePartie(idPartie),HttpStatus.OK);
+        return new ResponseEntity<>(IpartieService.getScorePartie(idPartie),HttpStatus.OK);
     }
     @Override
     public ResponseEntity<Boolean> getestPret( Integer idPartie) {

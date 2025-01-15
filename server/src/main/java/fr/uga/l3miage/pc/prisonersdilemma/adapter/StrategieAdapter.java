@@ -1,9 +1,9 @@
 package fr.uga.l3miage.pc.prisonersdilemma.adapter;
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.Strategie;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.Strategie;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
 
 import java.util.List;
 

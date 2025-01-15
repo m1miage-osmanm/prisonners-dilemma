@@ -1,14 +1,13 @@
 package fr.uga.l3miage.pc.prisonersdilemma.services;
 
-import fr.uga.l3miage.pc.prisonersdilemma.components.PartieComponent;
-import fr.uga.l3miage.pc.prisonersdilemma.models.JoueurEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.components.PartieComponent;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.services.PartieService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -27,7 +26,7 @@ class PartieServiceTest {
     private PartieComponent partieComponent;
 
     @InjectMocks
-    private PartieService partieService;  
+    private PartieService partieService;
 
     @Test
     void testCreerPartie2Joueurs() {

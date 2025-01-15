@@ -1,10 +1,12 @@
 package fr.uga.l3miage.pc.prisonersdilemma.components;
 
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.*;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.PacificateurNaif;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.RandomAdapter;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.RandomGenerator;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.PacificateurNaif;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.RandomAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

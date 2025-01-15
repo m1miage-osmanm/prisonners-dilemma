@@ -1,9 +1,9 @@
 package fr.uga.l3miage.pc.prisonersdilemma.components;
 
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.DonnantDeuxDonnantRandom;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.RandomAdapter;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.DonnantDeuxDonnantRandom;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.RandomAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

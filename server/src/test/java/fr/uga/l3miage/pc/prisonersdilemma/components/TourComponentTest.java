@@ -1,9 +1,9 @@
 package fr.uga.l3miage.pc.prisonersdilemma.components;
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.PartieEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TourEntity;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
-import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.components.TourComponent;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

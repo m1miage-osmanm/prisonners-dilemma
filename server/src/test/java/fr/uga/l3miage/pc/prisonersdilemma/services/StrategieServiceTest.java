@@ -1,10 +1,11 @@
 package fr.uga.l3miage.pc.prisonersdilemma.services;
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.Strategie;
-import fr.uga.l3miage.pc.prisonersdilemma.models.TypeDecision;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.DonnantDonnant;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.DonnantDeuxDonnant;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.DonnantDeuxDonnantRandom;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.Strategie;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.services.StrategieService;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.DonnantDonnant;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.DonnantDeuxDonnant;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.DonnantDeuxDonnantRandom;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

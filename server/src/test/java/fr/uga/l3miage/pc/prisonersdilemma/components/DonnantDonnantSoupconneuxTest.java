@@ -1,8 +1,11 @@
 package fr.uga.l3miage.pc.prisonersdilemma.components;
 
 
-import fr.uga.l3miage.pc.prisonersdilemma.models.*;
-import fr.uga.l3miage.pc.prisonersdilemma.strat.DonnantDonnantSoupconneux;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
+import fr.uga.l3miage.pc.prisonersdilemma.domain.strat.DonnantDonnantSoupconneux;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
