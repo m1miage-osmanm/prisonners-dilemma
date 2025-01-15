@@ -19,4 +19,8 @@ public class PartieDatabaseRepo implements IpartieRepository {
     public PartieEntity save(PartieEntity partie) {
         return repo.save(partie);
     }
-}
+
+    @Override
+    public void deleteAll() { repo.deleteAll(); }
+    }
+

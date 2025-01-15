@@ -1,6 +1,7 @@
 package fr.uga.l3miage.pc.prisonersdilemma.repositories;
 
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.ports.out.IpartieRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PartieRepositoryTest {
 
     @Autowired
-    private PartieRepository partieRepository;
+    private IpartieRepository partieRepository;
 
     @Test
     void testFindPartieEntityByIdSuccess() {

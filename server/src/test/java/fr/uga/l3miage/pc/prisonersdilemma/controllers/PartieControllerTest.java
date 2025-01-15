@@ -1,6 +1,7 @@
 package fr.uga.l3miage.pc.prisonersdilemma.controllers;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.JoueurEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
+import fr.uga.l3miage.pc.prisonersdilemma.ports.out.IpartieRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.JoueurRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.PartieRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -29,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ActiveProfiles("test")
 public class PartieControllerTest {
     @Autowired
-    private PartieRepository partieRepository;
+    private IpartieRepository partieRepository;
 
     @Autowired
     private JoueurRepository joueurRepository;
@@ -58,7 +59,7 @@ public class PartieControllerTest {
         // Assertions
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(partieRepository.findById(response.getBody()).isPresent());
+        assertTrue(partieRepository.findPartieEntityById(response.getBody()).isPresent());
     }
 
     @Test
@@ -83,7 +84,7 @@ public class PartieControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
 
-        PartieEntity updatedPartie = partieRepository.findById(idPartie).orElse(null);
+        PartieEntity updatedPartie = partieRepository.findPartieEntityById(idPartie).orElse(null);
         assertNotNull(updatedPartie);
         assertNotNull(updatedPartie.getJoueur2());
         assertEquals("Player2", updatedPartie.getJoueur2().getUsername());
