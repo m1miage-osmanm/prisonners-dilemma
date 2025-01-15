@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.uga.l3miage.pc.prisonersdilemma.ports.out.IpartieRepository;
-import fr.uga.l3miage.pc.prisonersdilemma.ports.ItourComponent;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.services.StrategieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class PartieComponent {
 
     private final IpartieRepository ipartieRepository;
-    private final ItourComponent tourComponent;
+    private final TourComponent tourComponent;
     private final StrategieService strategieService;
     private String noExist= " does not exist.";
     private String id="Partie with ID ";

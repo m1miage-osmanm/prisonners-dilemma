@@ -3,8 +3,6 @@ package fr.uga.l3miage.pc.prisonersdilemma.domain.components;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.PartieEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TourEntity;
 import fr.uga.l3miage.pc.prisonersdilemma.domain.models.TypeDecision;
-import fr.uga.l3miage.pc.prisonersdilemma.ports.ItourComponent;
-import fr.uga.l3miage.pc.prisonersdilemma.ports.out.ItourRepository;
 import fr.uga.l3miage.pc.prisonersdilemma.repositories.TourRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class TourComponent implements ItourComponent {
+public class TourComponent {
     public static final int T = 5; // Gain si trahison et l'autre coopère
     public static final int D = 0; // Perte si coopère et l'autre trahit
     public static final int C = 3; // Gain si les deux coopèrent
     public static final int P = 1; // Gain si les deux trahissent
 
 
-    private final ItourRepository tourRepository;
+    private final TourRepository tourRepository;
 
 
     public TourEntity creerEtSauvegarderTour(PartieEntity partie) {
