@@ -26,7 +26,8 @@
             <groupId>fr.uga.miage.m1</groupId>
             <artifactId>prisoner_dilema_1_5</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/libs/prisoner_dilema_1_5-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
 
         <!-- Lombok dependency -->
@@ -214,6 +215,11 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/libs/prisoner_dilema_1_5-0.0.1-SNAPSHOT.jar</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>generate-code-coverage-report</id>
@@ -221,6 +227,11 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/libs/prisoner_dilema_1_5-0.0.1-SNAPSHOT.jar</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
